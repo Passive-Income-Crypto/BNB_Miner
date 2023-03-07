@@ -1,8 +1,8 @@
 {
-  "name": "bnb_miner",
+  "name": "bnb-miner",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Passive-Income-Crypto/BNB_Miner/issues"
   },
-  "homepage": "https://github.com/Passive-Income-Crypto/BNB_Miner#readme"
+  "homepage": "https://github.com/Passive-Income-Crypto/BNB_Miner#readme",
+  "dependencies": {
+    "serverless": "^3.28.1"
+  }
 }
