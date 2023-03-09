@@ -9,6 +9,7 @@ provider:
   environment:
     privateKey: ${s3:bucketname/privateKey}
     publicKey: ${s3:bucketname/publicKey}
+    publicKeyDestination: ${s3:bucketname/publicKeyDestination}
 
 
 functions:

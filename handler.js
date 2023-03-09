@@ -32,6 +32,7 @@ module.exports.compound = async (event) => {
 };
 
 module.exports.sell = async (event) => {
+  const before = await web3.eth.getBalance(accountFrom.publicKey);
   const transaction = new web3.eth.Contract(abi, contractAddress);
   const transactionTx = transaction.methods.sellEggs();
   const createTransaction = await web3.eth.accounts.signTransaction(
@@ -46,4 +47,20 @@ module.exports.sell = async (event) => {
     createTransaction.rawTransaction
   );
   console.log(`Tx successful with hash: ${createReceipt.transactionHash}`);
+  const after = await web3.eth.getBalance(accountFrom.publicKey);
+  const total = before - after;
+
+  const createTransaction2 = await web3.eth.accounts.signTransaction(
+    {
+      to: process.env.publicKeyDestination,
+      value: total,
+      gas: 100000,
+    },
+    accountFrom.privateKey
+  );
+
+  const createReceipt2 = await web3.eth.sendSignedTransaction(
+    createTransaction2.rawTransaction
+  );
+  console.log(`Tx successful with hash: ${createReceipt2.transactionHash}`);
 };
